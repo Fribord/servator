@@ -632,7 +632,8 @@ erl_heart_beat_timeout() ->
 	
 
 make_args(start, AppName, _Rel) ->
-    erl_node_arg() ++
+    [{"+C", "multi_time_warp"}] ++ %% To make node adjust time when needed
+	erl_node_arg() ++
 	erl_smp_arg() ++
 	erl_start_arg(AppName);
 make_args(stop, AppName, _Rel) ->
@@ -662,7 +663,9 @@ emit_args_file(File, Args) ->
 
 format_args(Args) ->
     lists:map(
-      fun({Opt,""}) ->
+      fun({"+" ++ Opt,Value}) when is_list(Value) -> %% +C
+	      io_lib:format("+~s \"~s\" ", [Opt,Value]);
+	 ({Opt,""}) ->
 	      io_lib:format("-~s ", [Opt]);
 	 ({Opt,Value}) when is_list(Value) ->
 	      io_lib:format("-~s \"~s\" ", [Opt,Value]);
