@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+	<id>${APP}</id>
+	<metadata_license>MIT</metadata_license>
+	<project_license>MIT</project_license>
+	<name>${APPNAME}</name>
+	<summary>Application</summary>
+	<description>
+		<p>template meta data</p>
+	</description>
+	<launchable type="desktop-id">${APP}.desktop</launchable>
+	<url type="homepage">http://erlang.org/apps/${APP}</url>
+	<screenshots>
+		<screenshot type="default">
+			<image>http://erlang.org/apps/${APP}/${APP}.png</image>
+		</screenshot>
+	</screenshots>
+	<provides>
+		<id>${APP}.desktop</id>
+	</provides>
+</component>
